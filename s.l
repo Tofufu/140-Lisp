@@ -1,3 +1,31 @@
+(defun rdouble (y)
+  (cond
+   ( (null y) nil )
+   ( (numberp y ) (append (list y) (list y) ) )
+   ( (not (listp y ) ) nil) ;we put this at the bottom because it doesn checking from top to bottom. we have to have numberp first because numberb != list
+   ( t
+     (cond
+      ( (listp (car y) ) ; Car returns number if by itself or a LISTP if (2 3)
+	(append (list (rdouble (car y) ) ) (rdouble (cdr y) ) ) ) ;case that it's a (2 3) w/in (1 (2 3) 4) s.t. we make sure it's a type list
+      (t 
+       (append
+	    ( rdouble (car y) ) ( rdouble (cdr y) ) ;cdr returns a list...
+	    )
+       )
+      );cond()
+    )   
+  ) ;cond()
+) ;rdouble
+
+
+;if not a list it's just a single number, return 1 1 else (car y) (cdr y)...
+
+   
+
+
+
+
+
 (defun double-recursive(y)
 		 (cond
 		   (  (not (listp y) ) nil ) ;if y is not a list

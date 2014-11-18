@@ -1,3 +1,20 @@
+(defun my-mapcar(fun l1 l2)
+  (cond
+   ;mapcar only applies fun until the end of either l1 or l2...
+   ( (null l1) nil) ;if first list is done
+   ( (null l2) nil )  ;else it will check this, if second list is done!
+   ( t
+     (append ;can't use cons!
+      (list (funcall fun (car l1) (car l2) )) (my-mapcar fun (cdr l1) (cdr l2) )  ;do the function the first 1+1, then pass (+)(23)(23)... 
+      ;funcall calls the upon the function 'fun' which is passed in as a 'word'
+      ) ;append()
+   ); true
+   );
+) ;test using: (my-mapcar '+ '(1 2 3) '(1 2 3) )
+
+ 
+
+
 (defun rdouble (y)
   (cond
    ( (null y) nil )
@@ -19,11 +36,6 @@
 
 
 ;if not a list it's just a single number, return 1 1 else (car y) (cdr y)...
-
-   
-
-
-
 
 
 (defun double-recursive(y)
